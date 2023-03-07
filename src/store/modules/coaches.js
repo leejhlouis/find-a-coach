@@ -41,10 +41,11 @@ export default {
   actions: {
     async addCoach({ rootGetters, commit }, payload) {
       const userId = rootGetters.userId;
+      const authToken = rootGetters.token;
 
       try {
         await axios.put(
-          `https://find-a-coach-355c2-default-rtdb.firebaseio.com/coaches/${userId}.json`,
+          `https://find-a-coach-355c2-default-rtdb.firebaseio.com/coaches/${userId}.json?auth=${authToken}`,
           payload
         );
 
@@ -58,7 +59,6 @@ export default {
     },
     async loadCoaches({ getters, commit }, payload) {
       if (!payload.forceRefresh && !getters.shouldUpdate) {
-        console.warn('gdfd');
         return;
       }
 

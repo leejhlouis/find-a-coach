@@ -8,11 +8,25 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import TheHeader from './components/layouts/TheHeader.vue';
 
 export default {
   components: {
     TheHeader,
+  },
+  computed: {
+    ...mapGetters(['didAutoLogout']),
+  },
+  created() {
+    this.$store.dispatch('tryLogin');
+  },
+  watch: {
+    didAutoLogout(newValue, oldValue) {
+      if (newValue && newValue !== oldValue) {
+        this.$router.replace('/coaches');
+      }
+    },
   },
 };
 </script>

@@ -12,7 +12,10 @@
           <BaseButton mode="outline" @click="loadCoaches(true)"
             >Refresh</BaseButton
           >
-          <BaseButton v-if="!isCoach && !isLoading" link to="/register"
+          <BaseButton v-if="!isAuthenticated" link to="/auth?redirect=register"
+            >Login to Register as Coach</BaseButton
+          >
+          <BaseButton v-else-if="!isCoach && !isLoading" link to="/register"
             >Register as Coach</BaseButton
           >
         </div>
@@ -52,6 +55,7 @@ export default {
     };
   },
   computed: {
+    ...mapGetters(['isAuthenticated']),
     ...mapGetters('coaches', ['coaches', 'hasCoaches', 'isCoach']),
     filteredCoaches() {
       return this.coaches.filter((coach) => {

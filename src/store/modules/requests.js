@@ -33,10 +33,11 @@ export default {
     },
     async loadRequests({ rootGetters, commit }) {
       const coachId = rootGetters.userId;
+      const authToken = rootGetters.token;
 
       try {
         const { data } = await axios.get(
-          `https://find-a-coach-355c2-default-rtdb.firebaseio.com/requests/${coachId}.json`
+          `https://find-a-coach-355c2-default-rtdb.firebaseio.com/requests/${coachId}.json?auth=${authToken}`
         );
 
         const requests = [];
