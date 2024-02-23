@@ -49,7 +49,7 @@ export default {
     },
     async signUp({ dispatch }, payload) {
       return dispatch('authenticate', {
-        url: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyACQAI-_kCK4ibJHYgnBYa5v_kAmpLsR9U',
+        url: `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.VUE_APP_FIREBASE_API_KEY}`,
         credentials: {
           ...payload,
         },
@@ -57,7 +57,7 @@ export default {
     },
     async login({ dispatch }, payload) {
       return dispatch('authenticate', {
-        url: 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyACQAI-_kCK4ibJHYgnBYa5v_kAmpLsR9U',
+        url: `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FIREBASE_API_KEY}`,
         credentials: {
           ...payload,
         },
